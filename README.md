@@ -100,7 +100,43 @@ El propósito de esta columna es concentrar la información que no figura para l
 
    127
 
+***3. iii) ¿Cuántos genes están listados en el organismo?***
 
+21411
+
+***3. iv) ¿Cuál es el top 10 de tipo de features (columna 3) más anotados en el genoma?***
+
+
+ 684302 exon
+
+ 
+ 645647 CDS
+
+ 
+  52215 mRNA
+
+  
+  43238 biological_region
+
+  
+  37603 five_prime_UTR
+
+  
+  30757 three_prime_UTR
+
+  
+  21411 gene
+
+  
+   2179 ncRNA_gene
+
+   
+   1690 lnc_RNA
+
+   
+    
+   816 pseudogenic_transcript
+    
    
 
    
