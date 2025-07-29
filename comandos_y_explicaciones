@@ -1,0 +1,50 @@
+ #aqui creamos una carpeta donde guardaremos el archivo GFF del organismo en cuestion y la hoja de texto plano donde iran los codigos y las explicaciones pertinentes de estos
+
+ mkdir seguimiento_1_bioinfor
+
+ #verifico que el codigo anterior haya sido efectivo
+
+ head comandos_y_explicaciones 
+
+# 1. ahora descargamos el archivo del organismo Takifugu rubripes con el codigo wget: 
+
+ wget https://ftp.ensembl.org/pub/current_gff3/takifugu_rubripes/Takifugu_rubripes.fTakRub1.2.114.gff3.gz 
+
+# 2. Ahora se descomprime el archivo con el comando gunzip:         
+
+gunzip Takifugu_rubripes.fTakRub1.2.114.gff3.gz 
+
+# 3. ¿Cuantos features contiene el archivo? Para contestar esta pregunta vamos a usar el siguiente comando:
+
+grep -v ^# Takifugu_rubripes.fTakRub1.2.114.gff3 | wc -l
+
+# es importante notar que el codigo anterior nos permite realizar el conteo de lineas desde la primera sin incluir aquellas que comienzen por un "#" puesto que estas últimas son solo comentarios
+
+# 4. ¿Cuantas regiones de la secuencia (cromosomas) contiene el archivo?
+# para esto se usará el siguiente código:
+grep "^##sequence-region" Takifugu_rubripes.fTakRub1.2.114.gff3  | wc -l
+
+# nótese que este código permite contar todas las lineas que empiecen por "##sequence-region", luego el wc - l permite retornar unicamente el numero de entradas que cumplen con esta característica
+
+
+# 5. ¿Cuántos genes están listados en el organismo?
+
+# en el archivo, las entradas que corresponden a genes están identificadas en la tercera columna con la palabra "gene", se usará el siguiente código para contar las entradas que cumplan con esta columna 
+
+grep -P '\tgene\t' Takifugu_rubripes.fTakRub1.2.114.gff3 | wc -l
+
+# aquí el flag "-p" permite que grep reconozcan expresiones como "/t" la cual representa una tabulación en el archivo, es importante recordar que los archivos GFF, tal como el que se está trabajando, 
+# separa sus columnas con tabulaciones. El hecho de colocar "'\tgene\t" de esta forma, simboliza que a la palabra "gene" le precede y le continúa una tabulación, así nos aseguramos que unicamente filtre 
+# la columna que nos interesa; finalmente el wc -l nos devuelve únicamente el numero de entradas que cumple con la condición.
+
+# 6. ¿Cuál es el top 10 de tipo de features (columna 3) más anotados en el genoma?
+
+# Para encontrar la respuesta se usará el siguiente flujo de trabajo
+
+grep -v '^###' Takifugu_rubripes.fTakRub1.2.114.gff3 | cut -f3 | sort | uniq -c | sort -nr | head 
+
+# para empezar, el grep -v'^###' va a ayudar a que no se cuenten los ### que se usan comunmente en los archivos GFF3 para hacer separaciones de anotaciones relacionadas, el cut -f3 va a cortar la tercera
+# columna que es donde se encuentran los features de cada entrada, después el sort ordenará las lineas alfabéticamente de forma tal que las lineas de igual feature queden agrupadas, el uniq va a eliminar 
+# los duplicados concecutivos mientras que el flag -c se encarga de contar cuantas veces se repite cada lína con el mismo feature, luego el sort vuelve a organizar las lineas por cantidad, el flago -n hace
+# que las ordene por orden numérico mientras que el -r fuerza a que la lista sea organizada en orden reverso, es decir, de mayor a menor, finalmente, el head mostrará por defecto las primeras 10 líneas de la lista 
+#  que se acaba de crear, estas primeras 10 líneas corresponden al top 10 de features que más se repiten 
