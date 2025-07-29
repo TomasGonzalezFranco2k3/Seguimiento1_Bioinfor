@@ -5,11 +5,11 @@ los archivos tipo GFF3 también conocidos como Generic Feature Format Version3
 son ficheros de texto separados por tabuación en nueve columnas, cada una aportando información importante sobre caracterísiticas genómicas, si algún campo se desconocoe su lugar se reemplaza por un "." se distinguen 9 tipos de columnas:
 
 
-1. *seqid:* Es un ID usado para establecer el sitema de coordenadas para la secuencia de referencia, básicamente es usada para identificar la secuencia de referencia sobre la cual está anotada una característica genómica, ya sea un cromosoma completo, un plásmido o una secuencia de un scaffold, un ejemplo es el *"ctg123"* de esta entrada
+1. *seqid:* Es un ID usado para establecer el sitema de coordenadas para la secuencia de referencia, básicamente es usada para identificar la secuencia de referencia sobre la cual está anotada una característica genómica, ya sea un cromosoma completo o un plásmido, un ejemplo es el *"ctg123"* de esta entrada
    
   **ctg123** . gene            1000  9000  .  +  .  ID=gene00001;Name=EDEN
 
-2. *source:* es un calificativo en texto que describe la herramienta o fuente de la que se obtuvo la entrada, por ejemplo, puede ser *"Genescan"* o el nombre de una base de datos como *"Genbank"*; esto se ve reflejado en esta entrada en la cual según se evidencia, se desconoce la herramienta o base de datos de la que vino la información puesto que tiene un "." en la columna
+2. *source:* es un calificativo en texto que describe la herramienta o fuente de la que se obtuvo la entrada, por ejemplo, puede ser *"Genescan"* o el nombre de una base de datos como *"Genbank"*; esto se ve reflejado en esta entrada en la cual, según se evidencia, se desconoce la herramienta o base de datos de la que vino la información puesto que tiene un "." en la columna
 
    
   ctg123 **.** TF_binding_site 1000  1012  .  +  .  ID=tfbs00001;Parent=gene00001
@@ -22,8 +22,12 @@ son ficheros de texto separados por tabuación en nueve columnas, cada una aport
  
 4 y 5. *Start y End:* *Start* corresponde a la posición del primer nucleotido donde comienza la estructura en cuestión respecto al *seqid*, basicamente es la posición de inicio de la información de interés en el genoma, el *End* es la posición del ultimo nucleotido de la información de interés incluyendo este último nucleótido, de forma más sencilla:
 
+
 Posición:  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20
+
+
 Letra:     A  T  G  C  G  A  A  A  T  G  G  T  A  C  A  A  T  G  C  G
+
 
 Supongase que el gen empieza en la posición 5 y termina en la 12, eso quiere decir que abarca estos nucleótidos:
 
@@ -39,12 +43,18 @@ Por ejemplo:
 
 ctg123 . TF_binding_site 1000  1012  **.**  +  .  ID=tfbs00001;Parent=gene00001
 
- 7. *Strand:* indica en qué dirección está la característica, porque el AFN tiene dos "carriles". puede tomar tres valores +, - o .
+ 7. *Strand:* indica en qué dirección está hecha la lectura, porque el AFN tiene dos "carriles". puede tomar tres valores +, - o .
 
     
     + significa "hacia adelante" (5’→3’)
+   
+      
     - significa “hacia atrás” (3’→5’)
+   
+      
     . significa "no aplica" (p. ej., para regiones que no tienen hebra)
+
+    
 
 Un ejemplo:
 
@@ -81,4 +91,7 @@ Ontology_term = referencia a un término de ontología (por ej. GO:0005634).
 
 El propósito de esta columna es concentrar la información que no figura para las otras 8 columnas.
 
+3. i) ¿Cuantos features contiene el archivo?
+
+   
 
