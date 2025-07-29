@@ -1,6 +1,6 @@
 # Seguimiento1_Bioinfor
 
-# Seguimiento1_Bioinfor
+
 los archivos tipo GFF3 también conocidos como Generic Feature Format Version3
 son ficheros de texto separados por tabuación en nueve columnas, cada una aportando información importante sobre caracterísiticas genómicas, si algún campo se desconocoe su lugar se reemplaza por un "." se distinguen 9 tipos de columnas:
 
@@ -91,7 +91,17 @@ Ontology_term = referencia a un término de ontología (por ej. GO:0005634).
 
 El propósito de esta columna es concentrar la información que no figura para las otras 8 columnas.
 
-3. i) ¿Cuantos features contiene el archivo?
+***3. i) ¿Cuantos features contiene el archivo?***
+
+
+   1521820
+
+***3. ii)  ¿Cuantas regiones de la secuencia (cromosomas) contiene el archivo?***
+
+   127
+
+
+   
 
    
 
